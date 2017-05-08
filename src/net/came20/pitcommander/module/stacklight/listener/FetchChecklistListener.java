@@ -1,18 +1,18 @@
 package net.came20.pitcommander.module.stacklight.listener;
 
+import com.google.gson.internal.LinkedTreeMap;
 import net.came20.pitcommander.module.stacklight.Stacklight;
-import net.came20.pitcommander.moduleframework.announce.AnnounceTask;
-import net.came20.pitcommander.moduleframework.announce.Announcement;
+import net.came20.pitcommander.moduleframework.command.Reply;
+
 
 /**
- * Created by cameronearle on 5/7/17.
+ * Created by cameronearle on 5/8/17.
  */
-public class ChecklistContainerUpdateTask implements AnnounceTask {
-    @Override
-    public void onAnnounce(Announcement announcement) {
-        boolean allChecked = ((boolean) announcement.getPayload().get("allChecked"));
-        boolean redTask = ((boolean) announcement.getPayload().get("redSwitchTask"));
-        boolean blueTask = ((boolean) announcement.getPayload().get("blueSwitchTask"));
+public class FetchChecklistListener {
+    public void onReply(Reply r) {
+        boolean allChecked = ((boolean) r.getPayload().get("allChecked"));
+        boolean redTask = ((boolean) r.getPayload().get("redSwitchTask"));
+        boolean blueTask = ((boolean) r.getPayload().get("blueSwitchTask"));
         if (allChecked) {
             Stacklight.getInstance().SL_greenOn();
         } else {
