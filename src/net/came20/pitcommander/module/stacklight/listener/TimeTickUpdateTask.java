@@ -9,10 +9,9 @@ import net.came20.pitcommander.moduleframework.announce.Announcement;
  * Created by cameronearle on 5/7/17.
  */
 public class TimeTickUpdateTask implements AnnounceTask {
-
     @Override
     public void onAnnounce(Announcement announcement) {
-        boolean warn = (boolean) announcement.getPayload().get("warnTime");
+        boolean warn = (Boolean) announcement.getPayload().get("warnTime");
         if (warn) {
             Stacklight.getInstance().SL_amberBlink();
         } else {

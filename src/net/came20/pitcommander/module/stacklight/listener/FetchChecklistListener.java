@@ -10,25 +10,29 @@ import net.came20.pitcommander.moduleframework.command.Reply;
  */
 public class FetchChecklistListener {
     public void onReply(Reply r) {
-        boolean allChecked = ((boolean) r.getPayload().get("allChecked"));
-        boolean redTask = ((boolean) r.getPayload().get("redSwitchTask"));
-        boolean blueTask = ((boolean) r.getPayload().get("blueSwitchTask"));
-        if (allChecked) {
-            Stacklight.getInstance().SL_greenOn();
-        } else {
-            Stacklight.getInstance().SL_greenOff();
-        }
+        try {
+            boolean allChecked = ((boolean) r.getPayload().get("allChecked"));
+            boolean redTask = ((boolean) r.getPayload().get("redSwitchTask"));
+            boolean blueTask = ((boolean) r.getPayload().get("blueSwitchTask"));
+            if (allChecked) {
+                Stacklight.getInstance().SL_greenOn();
+            } else {
+                Stacklight.getInstance().SL_greenOff();
+            }
 
-        if (redTask) {
-            Stacklight.getInstance().SL_redOn();
-        } else {
-            Stacklight.getInstance().SL_redOff();
-        }
+            if (redTask) {
+                Stacklight.getInstance().SL_redOn();
+            } else {
+                Stacklight.getInstance().SL_redOff();
+            }
 
-        if (blueTask) {
-            Stacklight.getInstance().SL_blueOn();
-        } else {
-            Stacklight.getInstance().SL_blueOff();
+            if (blueTask) {
+                Stacklight.getInstance().SL_blueOn();
+            } else {
+                Stacklight.getInstance().SL_blueOff();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
